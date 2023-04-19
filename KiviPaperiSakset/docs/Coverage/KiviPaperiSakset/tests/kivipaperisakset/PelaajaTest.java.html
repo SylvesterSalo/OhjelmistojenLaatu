@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PelaajaTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Main (19.4.2023 13.05.46)</a> &gt; <a href="../../index.html" class="el_group">KiviPaperiSakset</a> &gt; <a href="../index.html" class="el_bundle">tests</a> &gt; <a href="index.source.html" class="el_package">kivipaperisakset</a> &gt; <span class="el_source">PelaajaTest.java</span></div><h1>PelaajaTest.java</h1><pre class="source lang-java linenums">package kivipaperisakset;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+<span class="nc" id="L8">class PelaajaTest {</span>
+
+<span class="nc" id="L10">	Pelaaja p1 = new Pelaaja();</span>
+	
+	@Test
+	@DisplayName(&quot;uusiValinta(): toimiiko uuden valinnan luonti oikein&quot;)
+	void testUusiValinta() {
+<span class="nc" id="L15">		p1.uusiValinta();</span>
+<span class="nc bnc" id="L16" title="All 6 branches missed.">		assertTrue((p1.getValinta().equals(&quot;kivi&quot;) || p1.getValinta().equals(&quot;paperi&quot;) || p1.getValinta().equals(&quot;sakset&quot;)), &quot;Pelaajan uuden valinnan jälkeen valinnan tulisi palauttaa kivi, paperi tai sakset&quot;);</span>
+		
+<span class="nc" id="L18">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Main (19.4.2023 13.05.46)</div></body></html>

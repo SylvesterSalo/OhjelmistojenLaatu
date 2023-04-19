@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Pelaaja.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Main (19.4.2023 13.05.46)</a> &gt; <a href="../../index.html" class="el_group">KiviPaperiSakset</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">kivipaperisakset</a> &gt; <span class="el_source">Pelaaja.java</span></div><h1>Pelaaja.java</h1><pre class="source lang-java linenums">package kivipaperisakset;
+
+/**
+ * Pelaaja-olio.
+ * Toimii pelaajana KiviPaperiSakset -pelissa
+ * @author Sylvester Salo
+ */
+<span class="fc" id="L8">public class Pelaaja {</span>
+
+	private int voitot;
+	private String valinta;
+
+	/**
+	 * Asettaa pelaajalle satunnaisesti uuden valinnan (kivi, paperi tai sakset).
+	 * 
+	 */
+	public void uusiValinta() {
+<span class="fc" id="L18">		String uusiValinta = &quot;&quot;;</span>
+<span class="fc" id="L19">		int c = (int) (Math.random() * 3);</span>
+<span class="pc bpc" id="L20" title="1 of 4 branches missed.">		switch (c) {</span>
+		case 0:
+<span class="fc" id="L22">			uusiValinta = &quot;kivi&quot;;</span>
+<span class="fc" id="L23">			break;</span>
+		case 1:
+<span class="fc" id="L25">			uusiValinta = &quot;paperi&quot;;</span>
+<span class="fc" id="L26">			break;</span>
+		case 2:
+<span class="fc" id="L28">			uusiValinta = &quot;sakset&quot;;</span>
+			break;
+		}
+<span class="fc" id="L31">		this.valinta = uusiValinta;</span>
+<span class="fc" id="L32">	}</span>
+
+	/**
+	 * Asettaa pelaajalle parametrina annetun valinnan.
+	 * @param valinta Asetettava valinta
+	 */
+	public void setValinta(String valinta) {
+<span class="nc" id="L39">		this.valinta = valinta;</span>
+<span class="nc" id="L40">	}</span>
+
+	/**
+	 * Palauttaa pelaajan valinnan.
+	 * @return valinta
+	 */
+	public String getValinta() {
+<span class="fc" id="L47">		return valinta;</span>
+	}
+
+	/**
+	 * Kasvattaa pelaajan voittojen maaraa.
+	 * @return voitot
+	 */
+	public int incrementVoitot() {
+<span class="fc" id="L55">		return voitot++;</span>
+	}
+
+	/**
+	 * Palauttaa pelaajan voittojen maaran.
+	 * @return voitot
+	 */
+	public int getVoitot() {
+<span class="fc" id="L63">		return voitot;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Main (19.4.2023 13.05.46)</div></body></html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>KiviPaperiSaksetTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Main (19.4.2023 13.05.46)</a> &gt; <a href="../../index.html" class="el_group">KiviPaperiSakset</a> &gt; <a href="../index.html" class="el_bundle">tests</a> &gt; <a href="index.source.html" class="el_package">kivipaperisakset</a> &gt; <span class="el_source">KiviPaperiSaksetTest.java</span></div><h1>KiviPaperiSaksetTest.java</h1><pre class="source lang-java linenums">package kivipaperisakset;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+<span class="nc" id="L7">class KiviPaperiSaksetTest {</span>
+
+<span class="nc" id="L9">	KiviPaperiSakset kps = new KiviPaperiSakset();</span>
+<span class="nc" id="L10">	Pelaaja p1 = new Pelaaja();</span>
+<span class="nc" id="L11">	Pelaaja p2 = new Pelaaja();</span>
+	
+	@Test
+	@DisplayName(&quot;voittikoP1(): toimiiko pelilogiikka oikein&quot;)
+	void testVoittikoP1() {
+<span class="nc" id="L16">		p1.setValinta(&quot;kivi&quot;);</span>
+<span class="nc" id="L17">		p2.setValinta(&quot;sakset&quot;);</span>
+<span class="nc" id="L18">		assertTrue(kps.voittikoP1(p1, p2), &quot;Pelilogiikka ei toimi oikein&quot;);</span>
+<span class="nc" id="L19">	}</span>
+
+	@Test
+	@DisplayName(&quot;onkoTasapeli(): toimiiko tasapelit oikein&quot;)
+	void testOnkoTasapeli() {
+<span class="nc" id="L24">		p1.setValinta(&quot;kivi&quot;);</span>
+<span class="nc" id="L25">		p2.setValinta(&quot;kivi&quot;);</span>
+<span class="nc" id="L26">		assertTrue(kps.onkoTasapeli(p1, p2), &quot;Tasapelilogiikka ei toimi oikein&quot;);</span>
+<span class="nc" id="L27">	}</span>
+	
+	@Test
+	@DisplayName(&quot;pelaaEra()&quot;)
+	void testPelaaEra() {
+<span class="nc" id="L32">		kps.pelaaEra(p1, p2);</span>
+<span class="nc bnc" id="L33" title="All 6 branches missed.">		assertTrue((p1.getVoitot() == 1 || p2.getVoitot() == 1 || kps.onkoTasapeli(p1,p2)), &quot;Erän jälkeen jommallakummalla pelaajalla tulisi olla 1 piste, jos tasapeli niin kummallakaan ei tulisi olla pistettä&quot;);</span>
+<span class="nc" id="L34">	}</span>
+	
+	@Test
+	@DisplayName(&quot;pelaaPeli()&quot;)
+	void testPelaaPeli() {
+<span class="nc" id="L39">		kps.pelaaPeli(p1, p2);</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">		assertTrue((p1.getVoitot() == 3 || p2.getVoitot() == 3), &quot;Pelin jälkeen jommallakummalla pelaajalla tulisi olla 3 pistettä voitettuna&quot;);</span>
+<span class="nc" id="L41">	}</span>
+	
+	@Test
+	@DisplayName(&quot;annaPisteet(): toimiiko pisteytys oikein&quot;)
+	void testAnnaPisteet() {
+<span class="nc" id="L46">		p1.setValinta(&quot;kivi&quot;);</span>
+<span class="nc" id="L47">		p2.setValinta(&quot;kivi&quot;);</span>
+<span class="nc" id="L48">		kps.annaPisteet(p1, p2);</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">		assertTrue((p1.getVoitot() == 0 &amp;&amp; p2.getVoitot() == 0), &quot;Pisteitä ei kuuluisi jakaa tasapelitilanteessa&quot;);		</span>
+<span class="nc" id="L50">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Main (19.4.2023 13.05.46)</div></body></html>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>KiviPaperiSakset.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Main (19.4.2023 13.05.46)</a> &gt; <a href="../../index.html" class="el_group">KiviPaperiSakset</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">kivipaperisakset</a> &gt; <span class="el_source">KiviPaperiSakset.java</span></div><h1>KiviPaperiSakset.java</h1><pre class="source lang-java linenums">package kivipaperisakset;
+
+/**
+ * KiviPaperiSakset-peli.
+ * Luokka sisaltaa metodit KiviPaperiSakset-pelia varten.
+ * @author Sylvester Salo
+ */
+
+<span class="fc" id="L9">public class KiviPaperiSakset {</span>
+
+<span class="fc" id="L11">	private int pelatutPelit = 0;</span>
+<span class="fc" id="L12">	private int tasapelit = 0;</span>
+
+	/**
+	 * Pelaa pelia yhden eran. 
+	 * Luodaan pelaajille uudet valinnat, tulostetaan tilanne, annetaan pisteet tilanteen mukaan ja kasvatetaan pelattujen pelien laskuria.
+	 * 
+	 * @param p1 Pelissa pelaavan Pelaaja 1:n esiintyma
+	 * @param p2 Pelissa pelaavan Pelaaja 2:n esiintyma
+	 * 
+	 */
+	public void pelaaEra(Pelaaja p1, Pelaaja p2) {
+<span class="fc" id="L23">		p1.uusiValinta();</span>
+<span class="fc" id="L24">		p2.uusiValinta();</span>
+<span class="fc" id="L25">		tulostaTilanne(p1, p2);</span>
+<span class="fc" id="L26">		annaPisteet(p1, p2);</span>
+<span class="fc" id="L27">		pelatutPelit++;</span>
+<span class="fc" id="L28">	}</span>
+
+	/**
+	 * Pelaa kokonainen peli. Pelataan eria kunnes jompikumpi pelaaja on voittanut 3
+	 * kertaa.
+	 * 
+	 * @param p1 Pelissa pelaavan Pelaaja 1:n esiintyma
+	 * @param p2 Pelissa pelaavan Pelaaja 2:n esiintyma
+	 * 
+	 */
+	public void pelaaPeli(Pelaaja p1, Pelaaja p2) {
+<span class="fc" id="L39">		boolean peliLoppui = false;</span>
+		do {
+<span class="fc" id="L41">			pelaaEra(p1, p2);</span>
+<span class="pc bpc" id="L42" title="1 of 4 branches missed.">			if ((p1.getVoitot() &gt;= 3) || (p2.getVoitot() &gt;= 3)) {</span>
+<span class="fc" id="L43">				peliLoppui = true;</span>
+<span class="fc" id="L44">				System.out.println(&quot;KOLME VOITTOA - PELI PÄÄTTYY&quot;);</span>
+			}
+<span class="fc bfc" id="L46" title="All 2 branches covered.">		} while (!peliLoppui);</span>
+
+<span class="fc" id="L48">	}</span>
+
+	/**
+	 * Jakaa pelaajille pisteet pelissa tapahtuneen tilanteen mukaan. Logiikka
+	 * pisteiden jakamisille tapahtuu eri metodeissa. Jos tasapeli, kumpikaan
+	 * pelaaja ei saa pistetta. Jos Pelaaja 1 voittaa, Pelaaja 1:n voittojen maaraa
+	 * kasvatetaan. Jos Pelaaja 2 voittaa, Pelaaja 2:n voittojen maaraa kasvatetaan.
+	 * 
+	 * @see #onkoTasapeli(Pelaaja, Pelaaja)
+	 * @see #voittikoP1(Pelaaja, Pelaaja)
+	 * @param p1 Pelissa pelaavan Pelaaja 1:n esiintyma
+	 * @param p2 Pelissa pelaavan Pelaaja 2:n esiintyma
+	 * 
+	 */
+	public void annaPisteet(Pelaaja p1, Pelaaja p2) {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">		if (onkoTasapeli(p1, p2)) {</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">		} else if (voittikoP1(p1, p2)) {</span>
+<span class="fc" id="L65">			p1.incrementVoitot();</span>
+<span class="fc" id="L66">			System.out.println(&quot;\nPelaaja 1 voittaa\n&quot;);</span>
+<span class="fc" id="L67">		} else {</span>
+<span class="fc" id="L68">			p2.incrementVoitot();</span>
+<span class="fc" id="L69">			System.out.println(&quot;\nPelaaja 2 voittaa\n&quot;);</span>
+		}
+<span class="fc" id="L71">	}</span>
+
+	/**
+	 * Logiikka pelaajien valintojen vertailuun.
+	 * 
+	 * @return true, jos Pelaaja 1:lla on voitollinen valinta.
+	 * 
+	 * @param p1 Pelissa pelaavan Pelaaja 1:n esiintyma
+	 * @param p2 Pelissa pelaavan Pelaaja 2:n esiintyma
+	 * 
+	 */
+	public boolean voittikoP1(Pelaaja p1, Pelaaja p2) {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		if (p1.getValinta().equals(&quot;kivi&quot;)) {</span>
+<span class="fc" id="L84">			return p2.getValinta().equals(&quot;sakset&quot;);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		} else if (p1.getValinta().equals(&quot;paperi&quot;)) {</span>
+<span class="fc" id="L86">			return p2.getValinta().equals(&quot;kivi&quot;);</span>
+		} else {
+<span class="fc" id="L88">			return p2.getValinta().equals(&quot;paperi&quot;);</span>
+		}
+	}
+
+	/**
+	 * Tarkistaa tapahtuiko erassa tasapeli. 
+	 * Jos tapahtui tasapeli, kasvatetaan tasapelilaskuria yhdella.
+	 * 
+	 * @return true, jos Pelaaja 1:n valinta oli sama kuin Pelaaja 2:n valinta.
+	 * 
+	 * @param p1 Pelissa pelaavan Pelaaja 1:n esiintyma
+	 * @param p2 Pelissa pelaavan Pelaaja 2:n esiintyma
+	 * 
+	 */
+	public boolean onkoTasapeli(Pelaaja p1, Pelaaja p2) {
+<span class="fc bfc" id="L103" title="All 2 branches covered.">		if (p1.getValinta().equals(p2.getValinta())) {</span>
+<span class="fc" id="L104">			System.out.println(&quot;\nTasapeli\n&quot;);</span>
+<span class="fc" id="L105">			tasapelit++;</span>
+<span class="fc" id="L106">			return true;</span>
+		}
+<span class="fc" id="L108">		return false;</span>
+	}
+
+	/**
+	 * Kuvaa pelin tilannetta. Auttaa seuraamaan pelin kulkua.
+	 * 
+	 * @param p1 Pelissa pelaavan Pelaaja 1:n esiintyma
+	 * @param p2 Pelissa pelaavan Pelaaja 2:n esiintyma
+	 * 
+	 */
+	public void tulostaTilanne(Pelaaja p1, Pelaaja p2) {
+<span class="fc" id="L119">		System.out.println(&quot;Erä: &quot; + pelatutPelit + &quot; =====================\n&quot;);</span>
+<span class="fc" id="L120">		System.out.println(&quot;Tasapelien lukumäärä: &quot; + tasapelit + &quot;\n&quot;);</span>
+<span class="fc" id="L121">		System.out</span>
+<span class="fc" id="L122">				.println(&quot;Pelaaja 1: &quot; + p1.getValinta() + &quot;\n\t Pelaaja 1:lla koossa &quot; + p1.getVoitot() + &quot; voittoa.&quot;);</span>
+<span class="fc" id="L123">		System.out</span>
+<span class="fc" id="L124">				.println(&quot;Pelaaja 2: &quot; + p2.getValinta() + &quot;\n\t Pelaaja 2:lla koossa &quot; + p2.getVoitot() + &quot; voittoa.&quot;);</span>
+<span class="fc" id="L125">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>Main (19.4.2023 13.05.46)</div></body></html>
